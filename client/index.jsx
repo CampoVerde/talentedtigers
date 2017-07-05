@@ -215,6 +215,7 @@ class App extends React.Component {
         {header}
         <div className="container">
           {main}
+          <SeatingChart/>
           {list}
         </div>
       </div>
