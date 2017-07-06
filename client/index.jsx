@@ -21,6 +21,7 @@ class App extends React.Component {
       onlineUsers: {},
       statistic: {},
       waitTime: 0,
+      isChartOn: false,
       location: ''
     };
   }
@@ -69,14 +70,16 @@ class App extends React.Component {
 
     this.getTickets(option);
   }
-  viewSeatingChart(evt) {
+
+  toggleSeatingChart(evt) {
     evt.preventDefault();
     console.log('calling viewSeatingChart. Toggling: ', this.state.isChartOn);
     this.setState(previousState => { return {isChartOn: !previousState.isChartOn}; });
   }
-  clickSeating(event) {
-    this.setState({location: event.target.getAttribute('data-location')});
-    this.viewSeatingChart(event);
+
+  clickSeating(evt) {
+    this.setState({location: evt.target.getAttribute('data-location')});
+    this.toggleSeatingChart(evt);
   }
 
   getTickets(option) {
@@ -198,24 +201,23 @@ class App extends React.Component {
       document.querySelector('BODY').style.backgroundColor = '#2b3d51';
       main = <Login />;
     } else if (isAuthenticated && user.role === 'student') {
-      main = <TicketSubmission viewSeatingChart={this.viewSeatingChart.bind(this)} submitTickets={this.submitTickets.bind(this)} ticketCategoryList={this.state.ticketCategoryList} location={this.state.location} />;
+      main = <TicketSubmission toggleSeatingChart={this.toggleSeatingChart.bind(this)} submitTickets={this.submitTickets.bind(this)} ticketCategoryList={this.state.ticketCategoryList} location={this.state.location} />;
     } else if (isAuthenticated && user.role === 'mentor') {
       // reserved for mentor view
     } else if (isAuthenticated && user.role === 'admin') {
       main = <AdminDashboard filterTickets={this.filterTickets.bind(this)} onlineUsers={this.state.onlineUsers} adminStats={this.state.statistic} ticketCategoryList={this.state.ticketCategoryList} />;
     }
     
-    const seating = this.state.isChartOn ? <SeatingChart /> : null;
+    const seating = this.state.isChartOn ? <SeatingChart clickSeating={this.clickSeating.bind(this)}/> : null;
     
     return (
       <div>
-        <div onClick={this.clickSeating.bind(this)} data-location="hr77">Testing Div</div>
         <Alert />
         {nav}
         {header}
         <div className="container">
+          {seating}
           {main}
-          <SeatingChart/>
           {list}
         </div>
       </div>
