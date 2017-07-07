@@ -7,6 +7,13 @@ module.exports.users = [
     "cohort":"HRSF-77"
   },
   {
+    "firstName": "Mentor",
+    "lastName": "Man",
+    "username": "hackmentor",
+    "role": "mentor",
+    "cohort": "HRSF-78"
+  },
+  {
     "firstName": "The",
     "lastName": "Bonkula",
     "username": "bonkula",
