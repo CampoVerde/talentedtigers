@@ -98,6 +98,7 @@ class App extends React.Component {
           category: document.getElementById('ticket_submission_category').value,
           location: document.getElementById('ticket_submission_location').value,
           description: document.getElementById('ticket_submission_description').value,
+          private: document.getElementById('is_private').checked,
           status: 'Opened'
         };
         $.ajax({
@@ -212,7 +213,6 @@ class App extends React.Component {
         <div className="container">
         <SeatingChart clickSeating={this.clickSeating.bind(this)}/>
           {main}
-          <SeatingChart/>
           {list}
         </div>
       </div>
