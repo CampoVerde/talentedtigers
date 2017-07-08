@@ -4,7 +4,6 @@ const util = require('../helpers/util');
 
 
 const createTicket = (req, res) => {
-  console.log('createTicket', req.body);
   Ticket.create(req.body).then(result => {
     if (!result) { res.sendStatus(500); }
     res.sendStatus(201);
@@ -34,7 +33,6 @@ const findTickets = (req, res) => {
   }
 
   const otherfunction = function(status) {
-    console.log('test', status);
     return status;
   };
 
