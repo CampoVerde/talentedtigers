@@ -316,6 +316,11 @@ span {
   border: 1px Gainsboro solid;
 }
 
+.numberInPair {
+  font-size: 14px;
+  line-height: 19px
+}
+
 /*
 .selected-station {
   background-color: blue;
