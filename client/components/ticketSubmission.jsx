@@ -9,7 +9,7 @@ class TicketSubmission extends React.Component {
     this.state = {
       location: '',
     };
-    this.clickSeating = (evt) => { this.setState({location: evt.target.getAttribute('data-location')}); };
+    this.clickSeating = (evt) => this.setState({location: evt.target.getAttribute('data-location')}); 
     this.handleLocationChange = (evt) => { this.setState({location: evt.target.value}); };
   }
 
@@ -21,7 +21,7 @@ class TicketSubmission extends React.Component {
           <button
             type="button"
             className="btn btn-primary"
-            style={{position: 'absolute' , top: 24 , left: 725, zIndex: 1200}}
+            style={{position: 'absolute' , top: 77 , left: 882, zIndex: 1200}}
             data-toggle="modal"
             data-target="#myModalFeedback"
           >
@@ -46,7 +46,7 @@ class TicketSubmission extends React.Component {
             <div className="input-group">
               <input type="text" id="ticket_submission_location" className="form-control" name="location" placeholder={'Your station number'} value={this.state.location} onChange={this.handleLocationChange}/>
               <span className="input-group-btn">
-                <SeatingChart clickSeating={this.clickSeating}/>
+                <SeatingChart clickSeating={this.clickSeating.bind(this)}/>
 
                 <button
                   type="button"

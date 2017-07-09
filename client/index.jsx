@@ -9,7 +9,7 @@ import Nav from './components/nav.jsx';
 import Header from './components/header.jsx';
 import AdminDashboard from './components/adminDashboard.jsx';
 import SeatingChart from './components/seatingChart.jsx';
-import Feedback from './components/Feedback.jsx';
+import Feedback from './components/feedback.jsx';
 
 
 class App extends React.Component {
@@ -88,10 +88,6 @@ class App extends React.Component {
     this.setState({
       review: evt.target.value
     });
-  }
-
-  handleLocationChange(evt) {
-    this.setState({location: evt.target.value});
   }
 
   getTickets(option) {
@@ -240,7 +236,6 @@ class App extends React.Component {
       main = <Login />;
     } else if (isAuthenticated && user.role === 'student') {
       main = <TicketSubmission 
-        handleLocationChange={this.handleLocationChange.bind(this)} 
         submitTickets={this.submitTickets.bind(this)} 
         ticketCategoryList={this.state.ticketCategoryList} 
         location={this.state.location}
@@ -262,7 +257,6 @@ class App extends React.Component {
         {nav}
         {header}
         <div className="container">
-          <SeatingChart clickSeating={this.clickSeating.bind(this)}/>
           <Feedback countStars={this.state.countStars} review={this.state.review} handleRatingClick={this.handleRatingClick.bind(this)} handleReview={this.handleReview.bind(this)} getLatestClosedTicket={this.getLatestClosedTicket.bind(this)}/>
           {main}
           {list}
